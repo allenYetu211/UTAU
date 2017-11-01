@@ -8,7 +8,6 @@
 import Article from '../Component/Article/Article';
 import Picture from '../Component/Picture/Picture';
 
-console.log(Article)
 
 const Routes = [
     {

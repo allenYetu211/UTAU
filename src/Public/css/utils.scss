@@ -2,9 +2,12 @@
 @import './transition.scss';
 
 /** theme Color START*/
-$borderColor: rgba(0,0,0,0.14);
 $titleHeight: 65px;
 $sidebarWidth: 256px;
+$paddingWidth: 15px;
+$directColor: rgba(118, 118, 118, 0.5);
+$borderColor: rgba(0, 0, 0, 0.14);
+$backgroundColor: rgba(0, 0, 0, 0.14);
 /** theme Color END*/
 $d-color: #1AC8B5;
 $m-color: #58E5BA;
@@ -13,7 +16,7 @@ $input-color: #f0f0f0;
 $tc: #ff5252;
 $ns: rgba(0, 0, 0, 0.54);
 $nt: rgba(0, 0, 0, 0.87);
-$bc: rgba(0,0,0,0.14);
+$bc: rgba(0, 0, 0, 0.14);
 /* Colors */
 $tint: #9574E4;
 $tint-mall: #FD6782;
@@ -87,7 +90,6 @@ $zToast: 3000;
   color: $ns;
   font-size: 14px;
 }
-
 
 // 计算字体转换的rem
 @function fontSize ($size) {

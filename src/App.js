@@ -24,7 +24,6 @@ class App extends Component {
                         </div>
 
                         <div className="subject">
-                            <div style={{flex: 1, padding: '10px'}}>
                                 {routes.map((route, index) => (
                                     <Route
                                         key={index}
@@ -33,7 +32,6 @@ class App extends Component {
                                         component={route.main}
                                     />
                                 ))}
-                            </div>
                         </div>
                     </div>
                 </div>
