@@ -1,0 +1,18 @@
+@import './utils';
+.App {
+}
+
+.main__content {
+  @extend %flex-center-between;
+  .sidebar {
+    height: 100vh;
+    width: $sidebarWidth;
+    padding-top: $titleHeight;
+    border-right: 1px solid $borderColor;
+  }
+  .subject {
+    flex: 1;
+    padding-top: $titleHeight;
+    height: 100vh;
+  }
+}

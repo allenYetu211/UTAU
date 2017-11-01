@@ -1,0 +1,10 @@
+@import '../../Public/css/utils.scss';
+.harder__content {
+  @extend %flex-center-between;
+  @include ab-location(0, auto, 0, 0, 100%, $titleHeight);
+  border-bottom: 1px solid $borderColor;
+}
+.utau__logo {
+  width: $sidebarWidth;
+  @extend %flex-center;
+}

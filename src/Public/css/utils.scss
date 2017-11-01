@@ -1,0 +1,95 @@
+@import './mixin.scss';
+@import './transition.scss';
+
+/** theme Color START*/
+$borderColor: rgba(0,0,0,0.14);
+$titleHeight: 65px;
+$sidebarWidth: 256px;
+/** theme Color END*/
+$d-color: #1AC8B5;
+$m-color: #58E5BA;
+$s-color: #92DCBE;
+$input-color: #f0f0f0;
+$tc: #ff5252;
+$ns: rgba(0, 0, 0, 0.54);
+$nt: rgba(0, 0, 0, 0.87);
+$bc: rgba(0,0,0,0.14);
+/* Colors */
+$tint: #9574E4;
+$tint-mall: #FD6782;
+$tint-forum: #FFCA28;
+$danger: #FF5454;
+$heading: #262626;
+$content: #505050;
+$label: #B9B9B9;
+$input-bg: #F9F9F9;
+$text-df: #333;
+$dropback-light: rgba(255, 255, 255, .5);
+$dropback-dark: rgba(0, 0, 0, .5);
+/* Dimentions */
+$innerPad: 15px;
+$barHeight: 50px;
+$btnHeight: 50px;
+/* z-index */
+$zBg: 0;
+$zContent: 1;
+$zBar: 100;
+$zPopover: 500;
+$zDropdown: 1000;
+$zDropdownContent: 1010;
+$zModal: 2000;
+$zToast: 3000;
+/* Grid System */
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-vertical-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+%flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+%flex-end-center {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+%flex-center-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+%flex-center-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+%font__news-title {
+  color: $nt;
+  font-size: 16px;
+}
+
+%font__news {
+  color: $ns;
+  font-size: 14px;
+}
+
+
+// 计算字体转换的rem
+@function fontSize ($size) {
+  @return $size / 2 / 16 + rem
+}

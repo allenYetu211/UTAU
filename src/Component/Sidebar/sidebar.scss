@@ -1,0 +1,14 @@
+@import '../../Public/css/utils.scss';
+.sidebar__content {
+  padding: 20px;
+  ul {
+    @extend %flex-vertical-center;
+  }
+  li {
+    width: 100%;
+    margin-bottom: 16px;
+    a {
+      display: block;
+    }
+  }
+}
