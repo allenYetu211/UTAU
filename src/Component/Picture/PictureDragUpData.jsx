@@ -1,12 +1,22 @@
 import React, {Component} from 'react'
+import axios from '../../Public/js/axios'
 
 class PictureDragUpData extends Component {
     constructor(props) {
         super(props)
         this.state = {
             isDrag: false,
-            imgList: []
+            imageUpdata: null, // 上传图片数组
+            imgList: [],
+            serverList: []
         }
+    }
+
+    async componentDidMount() {
+        let data = await axios.ajax('pic/allPicture')
+        this.setState({
+            serverList: data.data
+        })
     }
 
     componentWillUpdate() {
@@ -39,11 +49,11 @@ class PictureDragUpData extends Component {
     drop(e) {
         // 放下
         e.preventDefault()
-        console.log(e.dataTransfer.files)
         let _p = e.dataTransfer.files
         this.disposePicture(_p)
         this.setState({
-            isDrag: false
+            isDrag: false,
+            imageUpdata: e.dataTransfer.files
         })
     }
 
@@ -64,7 +74,14 @@ class PictureDragUpData extends Component {
             }
             return true
         })
+    }
 
+     uploadImage() {
+        Array.prototype.map.call(this.state.imageUpdata, async (e) => {
+            let formData = new FormData()
+            formData.append('file', e)
+            await axios.fileUpata(formData, 'pic/picture/upload')
+        })
     }
 
 
@@ -75,6 +92,10 @@ class PictureDragUpData extends Component {
     render() {
         const isDrag = this.state.isDrag
         let hint = isDrag ? `Drag` : `Drag-upDataPicture`
+
+        /**
+         * 拖拽在线预览图片
+         * */
         const imgList = this.state.imgList
         let imgUrl = null
         if (imgList.length >= 0) {
@@ -84,6 +105,20 @@ class PictureDragUpData extends Component {
                 </li>
             })
         }
+
+        /**
+         * 数据库数据读取
+         * */
+        // let sergerImag = this.state.serverList.map((e, index) => {
+        //     let _src = 'http://127.0.0.1' + e.Picture
+        //     console.log(_src)
+        //     return <li className="image__items" key={index}>
+        //         <img src={_src} alt=""/>
+        //     </li>
+        // })
+        //
+
+
         return (
             <div>
                 <div id="drag-area"
@@ -96,6 +131,14 @@ class PictureDragUpData extends Component {
                 <ul className="image__list">
                     {imgUrl}
                 </ul>
+
+                {/*<ul className="image__list--server">*/}
+                    {/*{sergerImag}*/}
+                {/*</ul>*/}
+
+                <button onClick={(e) => this.uploadImage(e)}>
+                    upload Image
+                </button>
             </div>
         )
     }
