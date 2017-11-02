@@ -10,7 +10,6 @@ class PictureDragUpData extends Component {
     }
 
     componentWillUpdate() {
-        console.log('componentWillUpdate')
     }
 
     /**
@@ -19,7 +18,6 @@ class PictureDragUpData extends Component {
     dragEnter(e) {
         // 拖入
         e.preventDefault()
-        console.log(this.state.imgList.length)
         this.setState({
             isDrag: true
         })
@@ -41,7 +39,8 @@ class PictureDragUpData extends Component {
     drop(e) {
         // 放下
         e.preventDefault()
-        let _p = e.dataTransfer.files[0]
+        console.log(e.dataTransfer.files)
+        let _p = e.dataTransfer.files
         this.disposePicture(_p)
         this.setState({
             isDrag: false
@@ -49,21 +48,23 @@ class PictureDragUpData extends Component {
     }
 
     disposePicture(_p) {
-        console.log('====== 执行')
         const self = this
-        if (_p.length === 0 &&
-            (_p.type.indexOf('image')) === -1) return
+        if (_p.length === 0) return
         // let img = window.webkitURL.createObjectURL(_p[0])
         // 声明图片信息
-        var reader = new window.FileReader()
-        reader.readAsDataURL(_p)
-        reader.onload = function (oireader) {
-            // 解构设置state
-            self.setState(preState => ({
-                    imgList: [...preState.imgList, oireader.target.result]
-                })
-            )
-        }
+        Array.prototype.map.call(_p, (e) => {
+            let reader = new window.FileReader()
+            reader.readAsDataURL(e)
+            reader.onload = function (oireader) {
+                // 解构设置state
+                self.setState(state => ({
+                        imgList: [...state.imgList, oireader.target.result]
+                    })
+                )
+            }
+            return true
+        })
+
     }
 
 
