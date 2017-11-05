@@ -1,1 +1,99 @@
 @import '../../Public/css/utils.scss';
+
+.article__count {
+  padding: $paddingWidth;
+  color:$pColor;
+  font-size: 12px;
+  margin-bottom: 20px;
+  &--number {
+    color: $txtColor;
+  }
+}
+
+.article__list--content {
+  padding: 0 $paddingWidth;
+  li {
+    padding: 10px 0 0;
+    border-top: 1px solid $borderColor;
+    margin-bottom: 66px;
+    position: relative;
+  }
+}
+
+.article__infor {
+  @extend %flex-center-between;
+  .article__title {
+    color: $contentColor;
+    font-size: 28px;
+  }
+  .article__items {
+    color: $pColor;
+    font-size: 14px;
+  }
+}
+
+.article__content {
+  color: $contentColor;
+  font-size: 18px;
+}
+
+.article__more {
+  @include ab-location(0, -40px, 0, 0);
+  .article__more--infor {
+    @include ab-location(auto, 0, 0, 0, 100%, 30px);
+    background-color:rgba(33,33,33,.8);
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s;
+    cursor: pointer;
+    a {
+      @extend %flex-center;
+      width: 100%;
+      height: 100%;
+      color: $txtColor;
+    }
+  }
+  &:hover {
+    .article__more--infor {
+      opacity: 1;
+    }
+  }
+}
+
+/**
+* 公用部分
+**/
+
+.grid-list-tiles {
+  @extend %flex_row_wrap;
+}
+
+.has-2-columns {
+  .grid-list-tile {
+    width: calc(50% - 20px + 0px);
+    margin-right: 40px;
+    &:nth-child(even) {
+      margin-right: 0;
+    }
+  }
+}
+
+.has-3-columns {
+  .grid-list-tile {
+    width: calc(33.33333% - 26.66667px + 0px);
+    margin-right: 40px;
+    &:nth-child(3n + 3) {
+      margin-right: 0;
+    }
+  }
+}
+
+.has-4-columns {
+  .grid-list-tile {
+    width: calc(25% - 30px + 0px);
+    margin-right: 40px;
+    &:nth-child(4n + 4) {
+      margin-right: 0;
+    }
+  }
+}

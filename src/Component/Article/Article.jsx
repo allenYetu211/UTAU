@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import ArticleList from './ArticleList'
 import './article.scss';
 class Article extends Component {
+
     render() {
         return(
             <div className="article__content">
-                Article
+                <ArticleList/>
             </div>
         );
     }

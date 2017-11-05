@@ -6,6 +6,7 @@
 // } from 'react-router-dom';
 // import Subject from '../Component/Subject/Subject';
 import Article from '../Component/Article/Article';
+import ArticleCompile from '../Component/Article/ArticleCompile';
 import Picture from '../Component/Picture/Picture';
 
 
@@ -22,6 +23,10 @@ const Routes = [
     {
         path: '/Picture',
         main: Picture
+    },
+    {
+        path: '/ArticleCompile/:id',
+        main: ArticleCompile
     }
 ]
 

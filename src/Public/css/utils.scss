@@ -8,12 +8,17 @@ $paddingWidth: 15px;
 $directColor: rgba(118, 118, 118, 0.5);
 $borderColor: rgba(0, 0, 0, 0.14);
 $backgroundColor: rgba(0, 0, 0, 0.14);
+$txtColor: #ff5252;
+$contentColor: rgba(0, 0, 0, 0.87);
+$pColor: rgba(0, 0, 0, 0.54);
+$bg-Color: rgba(33,33,33,1.0);
+
 /** theme Color END*/
 $d-color: #1AC8B5;
 $m-color: #58E5BA;
 $s-color: #92DCBE;
 $input-color: #f0f0f0;
-$tc: #ff5252;
+
 $ns: rgba(0, 0, 0, 0.54);
 $nt: rgba(0, 0, 0, 0.87);
 $bc: rgba(0, 0, 0, 0.14);
@@ -52,9 +57,14 @@ $zToast: 3000;
 
 %flex-vertical-center {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+%flex-vertical-start {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
 }
 
 %flex-center-between {
@@ -79,6 +89,12 @@ $zToast: 3000;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+%flex_row_wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 %font__news-title {
