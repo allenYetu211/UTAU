@@ -23,7 +23,7 @@ class ArticleList extends Component {
 
     render() {
         return (
-            <div className="article__content">
+            <div className="article__content--all">
                 <div className="article__count">
                     Articlenum: <span className="article__count--number"> {this.state.articleListCount}</span>
                 </div>

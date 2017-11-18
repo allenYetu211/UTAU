@@ -3,15 +3,29 @@
 
 /** theme Color START*/
 $titleHeight: 65px;
+$titleHeight-content: 85px;
 $sidebarWidth: 256px;
 $paddingWidth: 15px;
-$directColor: rgba(118, 118, 118, 0.5);
+$directColor: #eaeaea;
 $borderColor: rgba(0, 0, 0, 0.14);
 $backgroundColor: rgba(0, 0, 0, 0.14);
 $txtColor: #ff5252;
 $contentColor: rgba(0, 0, 0, 0.87);
 $pColor: rgba(0, 0, 0, 0.54);
-$bg-Color: rgba(33,33,33,1.0);
+$bg-Color: rgba(33, 33, 33, 1.0);
+
+$darkBtn: #737373;
+$darkBtnHover: #a09e9e;
+
+
+$darkColor: #404040;
+$darkColor-2: rgba(0, 0, 0, 0.66);
+$darkTitle: rgba(51, 51, 51, 0.8);
+$darkInput: rgba(64, 64, 64, 0.4);
+$darkInputTxt: #eadada;
+
+
+
 
 /** theme Color END*/
 $d-color: #1AC8B5;
@@ -57,7 +71,13 @@ $zToast: 3000;
 
 %flex-vertical-center {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+%flex-vertical-none-center{
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -83,6 +103,12 @@ $zToast: 3000;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+}
+
+%flex-start-center {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 %flex-center-start {

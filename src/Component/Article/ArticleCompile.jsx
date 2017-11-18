@@ -1,33 +1,86 @@
 import React, {Component} from 'react';
-import {Editor, EditorState, convertToRaw} from 'draft-js';
+import {withRouter} from "react-router";
+import ArticleMarkDown from './ArticleMarkDown'
+import ArticleContainer from './ArticleContainer'
+import Input from '../PublicComponent/input'
+import Textarea from '../PublicComponent/input/textarea'
+import axios from '../../Public/js/axios'
+import {observer, inject} from 'mobx-react'
 
+@inject(({article}) => {
+    return {
+        article: article
+    }
+})
+
+@observer
 class ArticleCompile extends Component {
-    constructor(props) {
+    constructor(props, context) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty()};
+        this.router = context.router
         this.onChange = (editorState) => this.setState({editorState});
     }
 
-    upDataArticle() {
-        const blocks = convertToRaw(this.state.editorState.getCurrentContent())
-        console.log(blocks)
+    /**
+     *  获取，文章标题，介绍，内容数据，存入mobx store
+     * */
+    getValue = (e) => {
+        let _t = e.target
+        if (_t.className.includes('input__component')) {
+            this.props.article.setTitle(_t.value)
+        } else if (_t.className.includes('textarea__component')) {
+            this.props.article.setIntroduce(_t.value)
+        } else if (_t.className.includes('editor__component')) {
+            this.props.article.setContent(_t.value)
+        }
     }
-    // TODO 拼接JSON发送数据 - 存入数据库
-    // TODO 解析数据内容
+     updataArtilce = async () => {
+        let articleData = this.props.article.articleData()
+        await axios.ajax('article/storeArticle',articleData, 'POST').then(res => {
+            this.props.history.push('/Article')
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
     render() {
         return (
+
+
             <div className="article__content--compile">
-                <div className="article__content--title">
-                    <input type="text" placeholder="Title"/>
+                <div className="article__content--input p-bottom-margin">
+                    <ArticleContainer
+                        title="文章标题"
+                        container={
+                            <Input
+                                getValue={this.getValue}
+                                placeholder="输入文章"/>}
+                    />
                 </div>
 
-                <div className="article__content--compile-main">
-                        <Editor editorState={this.state.editorState} onChange={this.onChange}/>
-                    </div>
-                    <button onClick={(e) => this.upDataArticle(e)}>updata</button>
+                <div className="article__content--textarea p-bottom-margin">
+                    <ArticleContainer
+                        title="文章描述"
+                        container={
+                            <Textarea
+                                getValue={this.getValue}
+                                placeholder="输入文章"/>}
+                    />
+                </div>
+
+                <div className="article__content--markdown p-bottom-margin">
+                    <ArticleContainer
+                        title="发表文章"
+                        container={<ArticleMarkDown
+                            getValue={this.getValue}/>}
+                    />
+                </div>
+                <button className="c-btn article__btn--updata" onClick={this.updataArtilce}> 更新</button>
             </div>
         );
     }
 }
 
-export default ArticleCompile;
+
+export default withRouter(ArticleCompile);
+

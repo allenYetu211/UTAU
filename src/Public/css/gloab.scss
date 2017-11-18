@@ -17,13 +17,17 @@ html {
   margin: 0;
   outline: none;
 }
+
 html {
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
+
 body {
   background: #fff;
   color: $text-df;
   font-weight: 600;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .layout-mobile {

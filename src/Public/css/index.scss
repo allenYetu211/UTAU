@@ -1,18 +1,22 @@
 @import './utils';
+@import '~antd/dist/antd.css';
+
 .App {
 }
 
 .main__content {
+  min-height: 100vh;
   @extend %flex-center-between;
+  background-color: $darkColor-2;
   .sidebar {
     height: 100vh;
     width: $sidebarWidth;
     padding-top: $titleHeight;
-    border-right: 1px solid $borderColor;
   }
   .subject {
     flex: 1;
-    padding-top: $titleHeight;
+    padding: $paddingWidth;
+    padding-top: $titleHeight-content;
     height: 100vh;
   }
 }

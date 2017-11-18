@@ -1,0 +1,12 @@
+.c-btn {
+  padding: 0 5px;
+  border: none;
+  color: rgba(255, 255, 255, 0.67);
+  background-color: transparent;
+  cursor: pointer;
+  &.c-btn-child {
+    span {
+      padding: 0 5px;
+    }
+  }
+}

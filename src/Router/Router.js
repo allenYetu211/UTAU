@@ -7,6 +7,7 @@
 // import Subject from '../Component/Subject/Subject';
 import Article from '../Component/Article/Article';
 import ArticleCompile from '../Component/Article/ArticleCompile';
+import ArticleMarkDown from '../Component/Article/ArticleMarkDown';
 import Picture from '../Component/Picture/Picture';
 
 
@@ -25,8 +26,16 @@ const Routes = [
         main: Picture
     },
     {
+        path: '/ArticleCompile',
+        main: ArticleCompile
+    },
+    {
         path: '/ArticleCompile/:id',
         main: ArticleCompile
+    },
+    {
+        path: '/ArticleMarkDown',
+        main: ArticleMarkDown
     }
 ]
 

@@ -10,7 +10,6 @@ class ArticleItems extends Component {
     }
 
     componentWillReceiveProps(val, oldval) {
-        console.log(val)
         this.setState({
             list: val.item
         })
@@ -18,7 +17,7 @@ class ArticleItems extends Component {
 
     render() {
         return (
-            <ul className="article__list--content grid-list-tiles has-3-columns">
+            <ul className="article__list--content grid-list-tiles has-1-columns">
                 {
                     this.state.list.map(e => {
                         return <li className="grid-list-tile" key={e.title} data-id={e.id}>
@@ -27,7 +26,7 @@ class ArticleItems extends Component {
                                 <div className="article__title">{e.title}</div>
                                 <div className="article__items">{e.uploadingTiem}</div>
                             </div>
-                            <div className="article__content">
+                            <div className="article__content-list">
                                 {e.contentLess}
                             </div>
                             <div className="article__more">
