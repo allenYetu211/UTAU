@@ -18,7 +18,34 @@ class ArticleCompile extends Component {
     constructor(props, context) {
         super(props);
         this.router = context.router
+        // modification - 是否为编辑文章详情模式
+        this.state = {
+            modification: false
+        }
         this.onChange = (editorState) => this.setState({editorState});
+    }
+
+    /**
+     * 根据路由是否拥有id, 编辑已有文章，发表新文章
+     * **/
+    async componentWillMount() {
+        if (!!this.props.match.params.id) {
+            await axios.ajax('article/findArticle', {}, 'GET', {
+                articleId: this.props.match.params.id
+            }).then(({data}) => {
+                this.setState({
+                    _id: data._id,
+                    modification: true
+                })
+                this.props.article.setTitle(data.title)
+                this.props.article.setIntroduce(data.introduce)
+                this.props.article.setContent(data.content)
+            })
+        } else {
+            this.props.article.setTitle('')
+            this.props.article.setIntroduce('')
+            this.props.article.setContent('')
+        }
     }
 
     /**
@@ -34,9 +61,30 @@ class ArticleCompile extends Component {
             this.props.article.setContent(_t.value)
         }
     }
-     updataArtilce = async () => {
+
+    /**
+     * 存入文章，跳转至新的页面
+     * **/
+    updataArtilce = async () => {
         let articleData = this.props.article.articleData()
-        await axios.ajax('article/storeArticle',articleData, 'POST').then(res => {
+        /***
+         * @param url - 连接地址
+         * @param data - 数据
+         * @param method - 请求方法
+         * @param id - 文章Id
+         * **/
+        let method = 'POST'
+        let _id = {}
+        // 判断为更新or修改
+        if (this.state.modification) {
+            method = 'PUT'
+            _id = {
+                articleId: this.state._id
+            }
+        }
+        articleData.timestamp = Date.parse(new Date())
+
+        await axios.ajax('article/storeArticle', articleData, method, _id).then(() => {
             this.props.history.push('/Article')
         }).catch(err => {
             console.log(err)
@@ -53,6 +101,7 @@ class ArticleCompile extends Component {
                         title="文章标题"
                         container={
                             <Input
+                                val={this.props.article.article.title}
                                 getValue={this.getValue}
                                 placeholder="输入文章"/>}
                     />
@@ -63,6 +112,7 @@ class ArticleCompile extends Component {
                         title="文章描述"
                         container={
                             <Textarea
+                                val={this.props.article.article.introduce}
                                 getValue={this.getValue}
                                 placeholder="输入文章"/>}
                     />
@@ -71,8 +121,11 @@ class ArticleCompile extends Component {
                 <div className="article__content--markdown p-bottom-margin">
                     <ArticleContainer
                         title="发表文章"
-                        container={<ArticleMarkDown
-                            getValue={this.getValue}/>}
+                        container={
+                            <ArticleMarkDown
+                                val={this.props.article.article.content}
+                                getValue={this.getValue}/>
+                        }
                     />
                 </div>
                 <button className="c-btn article__btn--updata" onClick={this.updataArtilce}> 更新</button>

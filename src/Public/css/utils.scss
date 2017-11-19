@@ -117,9 +117,9 @@ $zToast: 3000;
   justify-content: flex-start;
 }
 
-%flex_row_wrap {
+%flex_column_wrap {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 }
 

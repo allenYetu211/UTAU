@@ -161,9 +161,12 @@
 /**
 * 公用部分
 **/
-
 .grid-list-tiles {
-  @extend %flex_row_wrap;
+  display: flex;
+  flex-direction: column;
+  .grid-list-tile{
+    height: 150px;
+  }
 }
 
 .has-1-columns {

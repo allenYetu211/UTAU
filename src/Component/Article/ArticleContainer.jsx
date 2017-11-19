@@ -1,17 +1,5 @@
 import React, {Component} from 'react';
-// import { observer, inject } from 'mobx-react'
-//
-// console.log('observer===>>>', observer)
-// @inject((stores) => {
-//     console.log('inject ====>>>>', stores)
-// })
-//
-// @observer
 class ArticleContainer extends Component {
-    // constructor(props) {
-    //     super(props)
-    // }
-
     render() {
         return (
             <div className="article__card--container"

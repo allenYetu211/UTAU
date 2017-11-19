@@ -7,7 +7,7 @@ class Article {
         introduce: '',
         content: ''
     }
-    tick = 0
+    articleList = ''
 
     @action.bound
     increment() {
@@ -28,7 +28,16 @@ class Article {
     setContent(content) {
         this.article.content = content
     }
+    /**
+     *  设置文章列表
+     * **/
+    @action setArticleList(articleList) {
+        this.articleList = articleList
+    }
 
+    /**
+     * 编辑文章，预览篇片文章数据
+     * */
     @action articleData = () => {
         return {
             title: this.article.title,

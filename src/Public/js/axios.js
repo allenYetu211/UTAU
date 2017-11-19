@@ -2,14 +2,15 @@ import axios from 'axios'
 import config from '../config'
 
 export default {
-    async ajax(url = '', data = {}, method = 'GET') {
+    async ajax(url = '', data = {}, method = 'GET', params = {}) {
         const _d = await axios({
             url: config.serverURL + url,
             method: method,
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: data
+            data: data,
+            params: params
         })
         return _d
     },

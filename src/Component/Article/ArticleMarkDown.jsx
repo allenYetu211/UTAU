@@ -12,10 +12,10 @@ class ArticleMarkDown extends Component {
             full: false
         }
     }
-
     triggerFull = () => {
         this.setState({
-            full: !this.state.full
+            full: !this.state.full,
+            value: this.props.val
         })
     }
 
@@ -52,6 +52,7 @@ class ArticleMarkDown extends Component {
                         classID="editor"
                         className="editor c-input editor__component"
                         onChange={this.handleChange}
+                        value={this.props.val}
                     ></textarea>
 
                 </div>

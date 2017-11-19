@@ -15,27 +15,27 @@ const Routes = [
     {
         path: '/',
         exact: true,
-        main: Article
+        component: Article
     },
     {
         path: '/Article',
-        main: Article
+        component:Article
     },
     {
         path: '/Picture',
-        main: Picture
+        component: Picture
     },
     {
         path: '/ArticleCompile',
-        main: ArticleCompile
+        component:ArticleCompile
     },
     {
-        path: '/ArticleCompile/:id',
-        main: ArticleCompile
+        path: '/ArticleModification/:id',
+        component:ArticleCompile
     },
     {
         path: '/ArticleMarkDown',
-        main: ArticleMarkDown
+        component: ArticleMarkDown
     }
 ]
 
