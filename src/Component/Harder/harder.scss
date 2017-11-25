@@ -10,4 +10,5 @@
 .utau__logo {
   width: $sidebarWidth;
   @extend %flex-center;
+  color:$tc;
 }

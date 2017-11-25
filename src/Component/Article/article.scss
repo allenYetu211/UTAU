@@ -15,7 +15,7 @@
   font-size: 12px;
   margin-bottom: 20px;
   &--number {
-    color: $txtColor;
+    color: $tc;
   }
 }
 
@@ -30,7 +30,7 @@
   li {
     padding: 10px 0 0;
     border-top: 1px solid $borderColor;
-    margin-bottom: 66px;
+    margin-bottom: 45px;
     position: relative;
   }
 }
@@ -60,7 +60,7 @@
       @extend %flex-center;
       width: 100%;
       height: 100%;
-      color: $txtColor;
+      color: $tc;
     }
   }
   &:hover {
@@ -73,7 +73,14 @@
 .article__content--compile {
   padding: $paddingWidth;
   width: 100%;
-  @extend %flex-vertical-none-center;
+  @extend %flex-start-start;
+  .article__content {
+    flex: 1;
+  }
+  .article__container--tool {
+    width: 200px;
+    margin-left: 20px;
+  }
   .article__compile--container {
     flex: 1;
   }
@@ -94,13 +101,48 @@
   }
 }
 
+/*******tool********/
+
+.article__tool--drag-area {
+  @extend %flex-center;
+  position: relative;
+  height: 120px;
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 200;
+  color:#fff;
+  background-color: $darkInput;
+}
+
+.article__picture {
+  position: relative;
+  .article__preview-picture {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    overflow: hidden;
+    pointer-events: none;
+    img {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
 /********ArticleContainer*********/
 .article__card--container {
   &--title {
     background-color: $darkTitle;
     h2 {
-      padding: 0 $paddingWidth;
-      font-size: 24px;
+      padding: 5px $paddingWidth;
+      font-size: 16px;
+      font-weight: 200;
+      color: #fff;
     }
   }
 }
@@ -158,13 +200,28 @@
   background-color: $darkColor;
 }
 
+.article__list--tile-item{
+  @extend %flex-center;
+  .article__list--picture {
+    width: 300px;
+    height: 100%;
+    margin-right: 20px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .article__infor--container{
+    flex: 1;
+  }
+}
 /**
 * 公用部分
 **/
 .grid-list-tiles {
   display: flex;
   flex-direction: column;
-  .grid-list-tile{
+  .grid-list-tile {
     height: 150px;
   }
 }
@@ -206,14 +263,10 @@
 }
 
 .editor {
-  box-sizing: border-box;
-  border: 1px solid #ddd;
   cursor: text;
   padding: 16px;
   border-radius: 2px;
   margin-bottom: 2em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
-  background: #fefefe;
 }
 
 .editor :global(.public-DraftEditor-content) {

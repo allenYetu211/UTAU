@@ -132,10 +132,6 @@ class PictureDragUpData extends Component {
                     {imgUrl}
                 </ul>
 
-                {/*<ul className="image__list--server">*/}
-                    {/*{sergerImag}*/}
-                {/*</ul>*/}
-
                 <button onClick={(e) => this.uploadImage(e)}>
                     upload Image
                 </button>

@@ -12,6 +12,12 @@
     height: 100vh;
     width: $sidebarWidth;
     padding-top: $titleHeight;
+    .ant-menu.ant-menu-dark .ant-menu-item-selected {
+      background-color:$tc;
+      a{
+        color:#030202;
+      }
+    }
   }
   .subject {
     flex: 1;

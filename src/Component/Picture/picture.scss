@@ -4,14 +4,17 @@
   padding: 20px;
 }
 
-#drag-area {
-  width: 100%;
-  height: 200px;
-  margin: 0 auto;
-  border-bottom: 1px solid $borderColor;
-  font-size: 52px;
-  color: $directColor;
-  @extend %flex-center;
+.picture__content {
+
+  #drag-area {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    border-bottom: 1px solid $borderColor;
+    font-size: 52px;
+    color: $directColor;
+    @extend %flex-center;
+  }
 }
 
 .image__list {

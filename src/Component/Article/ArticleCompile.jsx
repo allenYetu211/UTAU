@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from "react-router";
 import ArticleMarkDown from './ArticleMarkDown'
 import ArticleContainer from './ArticleContainer'
+import ArticleTool from './ArticleTool'
 import Input from '../PublicComponent/input'
 import Textarea from '../PublicComponent/input/textarea'
 import axios from '../../Public/js/axios'
@@ -20,7 +21,8 @@ class ArticleCompile extends Component {
         this.router = context.router
         // modification - 是否为编辑文章详情模式
         this.state = {
-            modification: false
+            modification: false,
+            uptoken: ''
         }
         this.onChange = (editorState) => this.setState({editorState});
     }
@@ -29,6 +31,14 @@ class ArticleCompile extends Component {
      * 根据路由是否拥有id, 编辑已有文章，发表新文章
      * **/
     async componentWillMount() {
+        // 获取token
+        await axios.ajax('token/getToken').then(({data}) => {
+            this.props.article.setTokenDomain(data.uptoken, data.domain)
+            this.setState({
+                uptoken: data.uptoken,
+            })
+        })
+
         if (!!this.props.match.params.id) {
             await axios.ajax('article/findArticle', {}, 'GET', {
                 articleId: this.props.match.params.id
@@ -40,11 +50,13 @@ class ArticleCompile extends Component {
                 this.props.article.setTitle(data.title)
                 this.props.article.setIntroduce(data.introduce)
                 this.props.article.setContent(data.content)
+                this.props.article.setPicturePath(data.picture)
             })
         } else {
             this.props.article.setTitle('')
             this.props.article.setIntroduce('')
             this.props.article.setContent('')
+            this.props.article.setPicturePath('')
         }
     }
 
@@ -93,42 +105,54 @@ class ArticleCompile extends Component {
 
     render() {
         return (
-
-
             <div className="article__content--compile">
-                <div className="article__content--input p-bottom-margin">
-                    <ArticleContainer
-                        title="文章标题"
-                        container={
-                            <Input
-                                val={this.props.article.article.title}
-                                getValue={this.getValue}
-                                placeholder="输入文章"/>}
-                    />
-                </div>
 
-                <div className="article__content--textarea p-bottom-margin">
-                    <ArticleContainer
-                        title="文章描述"
-                        container={
-                            <Textarea
-                                val={this.props.article.article.introduce}
-                                getValue={this.getValue}
-                                placeholder="输入文章"/>}
-                    />
-                </div>
+                <div className="article__content">
+                    <div className="article__content--input p-bottom-margin">
+                        <ArticleContainer
+                            title="文章标题"
+                            container={
+                                <Input
+                                    val={this.props.article.article.title}
+                                    getValue={this.getValue}
+                                    placeholder="输入文章"/>}
+                        />
+                    </div>
 
-                <div className="article__content--markdown p-bottom-margin">
+                    <div className="article__content--textarea p-bottom-margin">
+                        <ArticleContainer
+                            title="文章描述"
+                            container={
+                                <Textarea
+                                    val={this.props.article.article.introduce}
+                                    getValue={this.getValue}
+                                    placeholder="输入文章"/>}
+                        />
+                    </div>
+
+                    <div className="article__content--markdown p-bottom-margin">
+                        <ArticleContainer
+                            title="发表文章"
+                            container={
+                                <ArticleMarkDown
+                                    val={this.props.article.article.content}
+                                    getValue={this.getValue}/>
+                            }
+                        />
+                    </div>
+                    <button className="c-btn article__btn--updata" onClick={this.updataArtilce}> 更新</button>
+                </div>
+                <div className="article__container--tool">
                     <ArticleContainer
-                        title="发表文章"
+                        title="首图"
                         container={
-                            <ArticleMarkDown
-                                val={this.props.article.article.content}
-                                getValue={this.getValue}/>
+                            <ArticleTool
+                                val={this.props.article.article.picturePath}
+                                uptoken={this.state.uptoken}
+                            />
                         }
                     />
                 </div>
-                <button className="c-btn article__btn--updata" onClick={this.updataArtilce}> 更新</button>
             </div>
         );
     }

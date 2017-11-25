@@ -20,10 +20,9 @@ class ArticleItems extends Component {
         let Y = date.getFullYear() + '-';
         let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
         let D = date.getDate() + ' '
-        let h = date.getHours() + ':'
-        let m = date.getMinutes() + ':'
-        let s = date.getSeconds();
-        console.log(Y + M + D + h + m + s);
+        let h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+        let m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
+        let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
         return Y + M + D + h + m + s
     }
 
@@ -33,25 +32,32 @@ class ArticleItems extends Component {
             <ul className="article__list--content grid-list-tiles has-1-columns">
                 {
                     this.state.list.map(e => {
-                        return <li className="grid-list-tile" key={e.title}>
-
-                            <div className="article__infor">
-                                <div className="article__title">{e.title}</div>
-                                <div className="article__items">
-                                    {
-                                        this.transformTime(e.timestamp)
-                                    }
+                        let picture = `http://${e.picture}`
+                        return (
+                            <li className="grid-list-tile article__list--tile-item" key={e.title}>
+                                <div className="article__list--picture">
+                                    <img src={picture} alt=""/>
                                 </div>
-                            </div>
-                            <div className="article__content-list">
-                                {e.introduce}
-                            </div>
-                            <div className="article__more">
-                                <div className="article__more--infor">
-                                    <Link to={`/ArticleModification/${e._id}`}> 详情</Link>
+                                <div className="article__infor--container">
+                                    <div className="article__infor">
+                                        <div className="article__title">{e.title}</div>
+                                        <div className="article__items">
+                                            {
+                                                this.transformTime(e.timestamp)
+                                            }
+                                        </div>
+                                    </div>
+                                    <div className="article__content-list">
+                                        {e.introduce}
+                                    </div>
+                                    <div className="article__more">
+                                        <div className="article__more--infor">
+                                            <Link to={`/ArticleModification/${e._id}`}> 详情</Link>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
+                            </li>
+                        )
                     })
                 }
             </ul>

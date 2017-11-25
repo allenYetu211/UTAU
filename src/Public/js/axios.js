@@ -22,5 +22,15 @@ export default {
             data: target
         })
         return _d
+    },
+    async updataPicture(target) {
+        return await axios({
+            url: '//up.qbox.me/',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: target
+        })
     }
 }

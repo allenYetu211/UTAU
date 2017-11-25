@@ -5,9 +5,18 @@ class Article {
     article = {
         title: '',
         introduce: '',
-        content: ''
+        content: '',
+        picturePath:''
     }
     articleList = ''
+    token = ''
+    domain = ''
+
+    @action.bound
+    setTokenDomain(token, domain) {
+        this.token = token
+        this.domain = domain
+    }
 
     @action.bound
     increment() {
@@ -28,10 +37,17 @@ class Article {
     setContent(content) {
         this.article.content = content
     }
+
+    @action.bound
+    setPicturePath(path) {
+        this.article.picturePath = path
+    }
+
     /**
      *  设置文章列表
-     * **/
-    @action setArticleList(articleList) {
+     */
+    @action
+    setArticleList(articleList) {
         this.articleList = articleList
     }
 
@@ -43,6 +59,7 @@ class Article {
             title: this.article.title,
             introduce: this.article.introduce,
             content: this.article.content,
+            picture: this.article.picturePath
         }
     }
 }
