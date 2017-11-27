@@ -9,6 +9,7 @@ import Article from '../Component/Article/Article';
 import ArticleCompile from '../Component/Article/ArticleCompile';
 import ArticleMarkDown from '../Component/Article/ArticleMarkDown';
 import Picture from '../Component/Picture/Picture';
+import Tags from '../Component/Tags/Tags';
 
 
 const Routes = [
@@ -36,6 +37,10 @@ const Routes = [
     {
         path: '/ArticleMarkDown',
         component: ArticleMarkDown
+    },
+    {
+        path: '/Tags',
+        component: Tags
     }
 ]
 

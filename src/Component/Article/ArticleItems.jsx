@@ -27,7 +27,6 @@ class ArticleItems extends Component {
     }
 
     render() {
-
         return (
             <ul className="article__list--content grid-list-tiles has-1-columns">
                 {

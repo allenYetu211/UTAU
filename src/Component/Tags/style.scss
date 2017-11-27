@@ -1,0 +1,12 @@
+@import '../../Public/css/utils.scss';
+
+.tags__overall {
+  @extend %flex-start;
+  .tags__overall--create {
+    flex: 1;
+  }
+  .tags__overall--preview {
+    width: 300px;
+    padding-left: 20px;
+  }
+}

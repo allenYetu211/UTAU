@@ -1,0 +1,29 @@
+@import '../../Public/css/utils.scss';
+
+.ui__vessel {
+  padding: $paddingWidth;
+  background-color: $darkColor;
+  &.ui__vessel--full{
+    padding: 0;
+    .ui__vessel--full-trans {
+      padding: 10px;
+    }
+  }
+  .ui__title {
+    background-color: $darkTitle;
+  }
+  h2 {
+    padding: 5px 15px;
+    font-size: 16px;
+    font-weight: 200;
+  }
+}
+
+.ui__button {
+  margin-top: 20px;
+  padding: 5px $paddingWidth;
+  border: none;
+  border-radius: 0;
+  background-color: $darkBtn;
+  cursor: pointer;
+}

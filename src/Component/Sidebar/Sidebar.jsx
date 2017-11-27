@@ -25,7 +25,7 @@ class Sidebar extends Component {
                 path: '/ArticleCompile',
                 txt: '发布文章'
             }, {
-                path: '/Article',
+                path: '/Tags',
                 txt: '文章标签'
             }, {
                 path: '/Picture',
